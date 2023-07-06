@@ -31,7 +31,7 @@
   isolation: isolate;
 
   @apply bg-cyan-600;
-  @apply text-sky-200;
+  @apply text-yellow-50;
 }
 
 html {
