@@ -16,6 +16,7 @@ function DashboardLayout() {
   const [isRobotSelected, setIsRobotSelected] = useState(false);
   const [selectedRobotData, setSelectedRobotData] =
     useState<IRobotSideBarProps>(ROBOT_INITIAL_VALUE);
+  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     const subscription = DataStore.observe(Robot).subscribe((msg) => {
@@ -47,6 +48,32 @@ function DashboardLayout() {
     });
   }, []);
 
+  useEffect(() => {
+    if (searchText) {
+      DataStore.query(Robot, (c) => c.name.contains(searchText)).then(
+        (data) => {
+          setRobotData(() => {
+            const robots: IRobotSideBarProps[] = [];
+
+            data?.forEach((robot) => {
+              robots.push({
+                name: robot.name,
+                id: robot.id,
+                length: robot.length,
+                width: robot.width,
+                height: robot.height,
+                sensorType: robot.sensorType,
+                imageUrl: robot.imageUrl,
+              });
+            });
+
+            return robots;
+          });
+        }
+      );
+    }
+  }, [searchText]);
+
   const renderSelectedRobot = (name: string) => {
     // Fetch robot details
     const selectedRobot = robotData.filter(
@@ -69,7 +96,11 @@ function DashboardLayout() {
 
   return (
     <div className="flex flex-col gap-4 md:grid md:grid-cols-4 h-full">
-      {isRobotSelected ? <RobotSideBar {...selectedRobotData} /> : <Sidebar />}
+      {isRobotSelected ? (
+        <RobotSideBar {...selectedRobotData} />
+      ) : (
+        <Sidebar handleSearch={(text: string) => setSearchText(text)} />
+      )}
       {isRobotSelected ? (
         <RobotInstance />
       ) : (

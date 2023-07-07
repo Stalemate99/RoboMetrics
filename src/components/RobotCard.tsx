@@ -20,7 +20,7 @@ export default function RobotCard({ name, handleSelection }: IRobotCardProps) {
       className="flex flex-col items-center max-w-md my-2 cursor-pointer bg-cover bg-[50%] bg-no-repeat h-fit"
       onClick={() => handleSelection(name)}
     >
-      <img src={url} alt={name} className="max-w-60 max-h-60" />
+      <img src={url} alt={name} className="max-w-60 h-60" />
       <h2 className="text-cyan-800 font-bold text-xl">{name}</h2>
     </div>
   );

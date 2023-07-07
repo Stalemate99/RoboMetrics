@@ -10,9 +10,17 @@ import LogoutButton from "./LogoutButton";
 
 import { ROBOT_INITIAL_VALUE } from "../constants/robot";
 
-function Sidebar() {
+interface ISideBar {
+  handleSearch: (text: string) => void;
+}
+
+function Sidebar({ handleSearch }: ISideBar) {
   const [search, setSearch] = useState("");
   const [formData, setFormData] = useState(ROBOT_INITIAL_VALUE);
+
+  const renderSearch = () => {
+    handleSearch(search);
+  };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -68,7 +76,11 @@ function Sidebar() {
           placeholder="Find robots"
           className="text-cyan-800 border-2 p-2 h-14 w-full border-orange-400 rounded"
         />
-        <FontAwesomeIcon icon={faSearch} className="w-6 h-6" />
+        <FontAwesomeIcon
+          icon={faSearch}
+          className="w-6 h-6 cursor-pointer"
+          onClick={renderSearch}
+        />
       </div>
       <section className="grid">
         <form onSubmit={handleSubmit} className="px-2">
