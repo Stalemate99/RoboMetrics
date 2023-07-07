@@ -1,19 +1,27 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Auth } from "aws-amplify";
 
+import OtpInput from "./OtpInput";
+import { useAuth } from "../contexts/AuthContext";
+
 import { SIGN_UP } from "../constants/auth";
 import { DEFAULT_TOAST_CONFIG } from "../constants/toast";
-import OtpInput from "./OtpInput";
 
 export default function SignUp() {
   const [formData, setFormData] = useState(SIGN_UP);
   const [otp, setOtp] = useState("");
   const [isVerificationActive, setVerificationActive] = useState(false);
-  const [isLoading, setLoading] = useState(false);
 
   const navigate = useNavigate();
+  const { user, signin } = useAuth();
+
+  const saveUserRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    if (user) return navigate("/");
+  }, []);
 
   const handleSignUp = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -52,6 +60,9 @@ export default function SignUp() {
       });
 
       setVerificationActive(true);
+      if (user) {
+        saveUserRef.current = user.getUsername();
+      }
     } catch (error: any) {
       toast.error(error?.message, DEFAULT_TOAST_CONFIG);
     }
@@ -68,8 +79,8 @@ export default function SignUp() {
     try {
       await Auth.confirmSignUp(formData.email, otp);
 
-      toast.success("Resent verification email.", DEFAULT_TOAST_CONFIG);
-      navigate("/signin");
+      toast.success("Welcome to RobotMetrics.", DEFAULT_TOAST_CONFIG);
+      signin(saveUserRef.current);
     } catch (error) {
       console.log("error confirming sign up", error);
     }
@@ -107,6 +118,7 @@ export default function SignUp() {
             type="email"
             name="email"
             value={formData.email}
+            autoComplete="email"
             className="flex items-center w-full h-10 text-black outline-none border-2 border-orange-400 rounded px-2 py-1"
             placeholder="email@org.domain"
             required
@@ -126,6 +138,7 @@ export default function SignUp() {
             type="password"
             name="password"
             value={formData.password}
+            autoComplete="current-password"
             className="flex items-center w-full h-10 text-black outline-none border-2 border-orange-400 rounded px-2 py-1"
             placeholder="********"
             required
@@ -135,7 +148,6 @@ export default function SignUp() {
         <span className="flex flex-col gap-4 items-center mb-4 w-full pl-6 my-2">
           <button
             type="submit"
-            disabled={!!isLoading}
             className="inline-block w-32 h-12 rounded bg-amber-900 px-5 pb-1 pt-2 text-md font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#e4a11b] transition duration-150 ease-in-out hover:bg-amber-800 hover:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)] focus:bg-amber-800 focus:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)] focus:outline-none focus:ring-0 active:bg-amber-600 active:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)] md:px-6 md:pb-2"
           >
             Register
@@ -174,7 +186,6 @@ export default function SignUp() {
         <span>
           <button
             type="submit"
-            disabled={!!isLoading}
             className="inline-block w-32 h-12 rounded bg-amber-900 px-5 pb-1 pt-2 mb-4 text-md font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#e4a11b] transition duration-150 ease-in-out hover:bg-amber-800 hover:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)] focus:bg-amber-800 focus:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)] focus:outline-none focus:ring-0 active:bg-amber-600 active:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)] md:px-6 md:pb-2"
           >
             Register
