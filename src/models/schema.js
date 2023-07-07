@@ -48,7 +48,7 @@ export const schema = {
                 "imageUrl": {
                     "name": "imageUrl",
                     "isArray": false,
-                    "type": "AWSURL",
+                    "type": "String",
                     "isRequired": true,
                     "attributes": []
                 },
@@ -88,18 +88,6 @@ export const schema = {
                                     "delete",
                                     "read"
                                 ]
-                            },
-                            {
-                                "provider": "userPools",
-                                "ownerField": "owner",
-                                "allow": "owner",
-                                "identityClaim": "cognito:username",
-                                "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
-                                    "read"
-                                ]
                             }
                         ]
                     }
@@ -110,5 +98,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.4.4",
-    "version": "c897e82b5838fcaa0b2c56b30ad4bcf6"
+    "version": "3796a179e36e6b8839f2e1b3f26eb64d"
 };

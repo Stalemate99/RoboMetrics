@@ -1,9 +1,9 @@
-type Robot @model @auth(rules: [{allow: public}, {allow: owner}]) {
+type Robot @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String!
   width: String!
   length: String!
   height: String!
   sensorType: String!
-  imageUrl: AWSURL!
-}
+  imageUrl: String!
+} 

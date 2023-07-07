@@ -1,0 +1,15 @@
+{
+  "resourceName": "s3robometricsstorageb6e91464",
+  "bucketName": "robometrics-storage-b6e91464",
+  "policyUUID": "ea08e183",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ",
+    "CREATE_AND_UPDATE"
+  ],
+  "authAccess": [
+    "READ",
+    "CREATE_AND_UPDATE",
+    "DELETE"
+  ]
+}
