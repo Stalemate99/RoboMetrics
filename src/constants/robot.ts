@@ -1,5 +1,5 @@
 export const ROBOT_INITIAL_VALUE = {
-  id: 0,
+  id: "",
   name: "",
   width: "",
   length: "",

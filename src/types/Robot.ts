@@ -1,4 +1,5 @@
 export interface IRobotSideBarProps {
+  id?: string;
   name: string;
   width: string;
   length: string;

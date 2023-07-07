@@ -1,12 +1,19 @@
+import { useEffect, useState } from "react";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { IRobotSideBarProps } from "../types/Robot";
-import { useNavigate } from "react-router-dom";
+import { Storage } from "aws-amplify";
 
 export default function RobotSideBar(props: IRobotSideBarProps) {
-  const { name, width, height, length, sensorType, imageUrl } = props;
-  const navigate = useNavigate();
+  const { name, width, height, length, sensorType } = props;
+  const [url, setUrl] = useState("");
+
+  useEffect(() => {
+    Storage.get(name)
+      .then((data) => setUrl(data))
+      .catch((err) => console.error(err));
+  }, []);
 
   return (
     <div className="bg-yellow-50 rounded p-2">
@@ -14,9 +21,9 @@ export default function RobotSideBar(props: IRobotSideBarProps) {
         <FontAwesomeIcon
           icon={faArrowLeft}
           className="w-6 h-6 cursor-pointer"
-          onClick={() => navigate("/")}
+          onClick={() => location.reload()}
         />
-        <img src="/images/robot1.jpg" alt={name} className="w-full h-auto" />
+        <img src={url} alt={name} className="w-full h-auto" />
       </section>
       <section className="flex flex-col gap-2 p-2">
         <h2 className="font-bold">{name}</h2>

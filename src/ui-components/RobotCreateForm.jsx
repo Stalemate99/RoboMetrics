@@ -52,7 +52,7 @@ export default function RobotCreateForm(props) {
     length: [{ type: "Required" }],
     height: [{ type: "Required" }],
     sensorType: [{ type: "Required" }],
-    imageUrl: [{ type: "Required" }, { type: "URL" }],
+    imageUrl: [{ type: "Required" }],
   };
   const runValidationTasks = async (
     fieldName,
