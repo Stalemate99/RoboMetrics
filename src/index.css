@@ -31,11 +31,28 @@
   isolation: isolate;
 
   @apply bg-cyan-600;
-  @apply text-yellow-50;
+  @apply text-cyan-800;
 }
 
 html {
   box-sizing: border-box;
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#root {
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  @apply pb-40;
 }
 
 body,

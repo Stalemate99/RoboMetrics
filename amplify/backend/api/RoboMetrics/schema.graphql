@@ -1,0 +1,9 @@
+type Robot @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String!
+  width: String!
+  length: String!
+  height: String!
+  sensorType: String!
+  imageUrl: String!
+} 

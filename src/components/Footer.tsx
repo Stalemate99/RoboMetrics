@@ -5,7 +5,7 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 function Footer() {
   return (
-    <footer className="fixed bottom-0 flex items-center justify-evenly w-full h-24 px-2 bg-cyan-800 shadow-lg">
+    <footer className="grid md:flex flex-none min-h-[10dvh] items-center justify-evenly w-full h-fit p-2 gap-2 bg-cyan-800 md:mt-auto md:gap-0 md:px-2">
       <div className="flex flex-none gap-2 items-center">
         <FontAwesomeIcon
           icon={faRobot}
@@ -15,8 +15,11 @@ function Footer() {
           RoboMetrics
         </h1>
       </div>
-      <div className="mx-4 h-20 bg-yellow-50 w-0.5" content=" "></div>
-      <div className="flex gap-2 items-center hover:underline hover:underline-offset-4 hover:text-sky-100">
+      <div
+        className="mx-4 md:h-20 bg-yellow-50 w-0.5 invisible md:visible"
+        content=" "
+      ></div>
+      <div className="flex gap-2 items-center hover:underline text-sky-200 hover:underline-offset-4 hover:text-sky-100">
         <FontAwesomeIcon
           icon={faEnvelope}
           className="text-orange-400 w-6 h-6"
@@ -25,8 +28,11 @@ function Footer() {
           <label>kanishqsunil99@gmail.com</label>
         </a>
       </div>
-      <div className="mx-4 h-20 bg-yellow-50 w-0.5" content=" "></div>
-      <div className="cursor-pointer flex items-center justify-end hover:underline hover:underline-offset-4 hover:text-sky-100">
+      <div
+        className="mx-4 md:h-20 bg-yellow-50 w-0.5 invisible md:visible"
+        content=" "
+      ></div>
+      <div className="cursor-pointer flex items-center justify-end text-sky-200 hover:underline hover:underline-offset-4 hover:text-sky-100">
         <a
           href="https://bmc.link/kanishqs"
           target="_blank"

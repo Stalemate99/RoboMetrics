@@ -7,7 +7,7 @@ function HomeLayout({ children }: HomeLayoutProps) {
   return (
     <>
       <Header />
-      <div>{children}</div>
+      {children}
       <Footer />
     </>
   );

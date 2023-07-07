@@ -9,7 +9,7 @@ import DashboardLayout from "./layouts/DashboardLayout";
 function App() {
   return (
     <HomeLayout>
-      <main className="flex flex-col p-1 w-full h-2/3 bg-cyan-600">
+      <main className="flex flex-col flex-grow p-3 w-full max-h-[80svh] bg-cyan-600">
         <Routes>
           <Route
             path="/"
