@@ -7,6 +7,8 @@ import { Auth } from "aws-amplify";
 
 import { DEFAULT_TOAST_CONFIG } from "../constants/toast";
 import { SIGN_IN } from "../constants/auth";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope, faKey } from "@fortawesome/free-solid-svg-icons";
 
 export default function SignIn() {
   const [formData, setFormData] = useState(SIGN_IN);
@@ -71,11 +73,12 @@ export default function SignIn() {
     <section className="flex justify-center">
       <form
         onSubmit={handleSignIn}
-        className="w-1/2 p-1 mt-24 flex flex-col items-center justify-center bg-yellow-50 rounded"
+        className="w-full md:w-1/3 p-1 mt-24 flex flex-col items-center justify-center bg-yellow-50 rounded"
       >
-        <span className="flex flex-col gap-4 w-[90%] my-2 mt-6">
-          <label htmlFor="email" className="font-medium text-lg text-cyan-600">
-            Enter Email
+        <h2 className="text-xl text-cyan-800 font-bold mt-4">Sign In</h2>
+        <span className="flex items-center justify-center gap-4 w-[90%] my-2 mt-6">
+          <label htmlFor="email" className="font-medium text-lg text-cyan-800">
+            <FontAwesomeIcon icon={faEnvelope} className="w-8 h-8" />
           </label>
           <input
             onChange={handleFormChange}
@@ -84,18 +87,18 @@ export default function SignIn() {
             name="email"
             value={formData.email}
             autoComplete="email"
-            className="flex items-center w-full h-10 text-black outline-none border-2 border-orange-400 rounded px-2 py-1"
+            className="flex items-center h-10 text-black outline-none border-2 border-orange-400 rounded px-2 py-1"
             placeholder="email@org.domain"
             required
           />
         </span>
 
-        <span className="flex flex-col gap-4 w-[90%] my-2">
+        <span className="flex items-center justify-center gap-4 w-[90%] my-2">
           <label
             htmlFor="passowrd"
-            className="font-medium text-lg text-cyan-600"
+            className="font-medium text-lg text-cyan-800"
           >
-            Enter Password
+            <FontAwesomeIcon icon={faKey} className="w-8 h-8" />
           </label>
           <input
             onChange={handleFormChange}
@@ -104,7 +107,7 @@ export default function SignIn() {
             name="password"
             value={formData.password}
             autoComplete="current-password"
-            className="flex items-center w-full h-10 text-black outline-none border-2 border-orange-400 rounded px-2 py-1"
+            className="flex items-center h-10 text-black outline-none border-2 border-orange-400 rounded px-2 py-1"
             placeholder="********"
             required
           />
