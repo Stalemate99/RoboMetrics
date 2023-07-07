@@ -35,10 +35,10 @@ To install and configure RobotMetrics, follow these steps:
 
 6. The application will launch in your browser at `http://localhost:5173/`.
 
-## Technology Used
+## Technology Used 🧑‍🍳
 RobotMetrics is built using the following technologies:
 
-⚛️ React: A JavaScript library for building user interfaces.
-📌 GraphQL: A query language for APIs and a runtime for executing those queries.
-🎐 Tailwind CSS: A utility-first CSS framework for rapidly building custom designs.
-🌐 AWS: A comprehensive cloud computing platform provided by Amazon.
+- ⚛️ React: A JavaScript library for building user interfaces.
+- 📌 GraphQL: A query language for APIs and a runtime for executing those queries.
+- 🎐 Tailwind CSS: A utility-first CSS framework for rapidly building custom designs.
+- 🌐 AWS: A comprehensive cloud computing platform provided by Amazon.
